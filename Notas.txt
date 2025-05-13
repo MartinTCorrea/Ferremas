@@ -1,0 +1,17 @@
+para iniciar entorno virtual en \Ferremas
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+.\ferremas_env\Scripts\activate
+cd ferremas_frontend
+
+para desactivar 
+
+deactivate
+
+para build 
+
+ng build
+
+para iniciar
+
+ng serve

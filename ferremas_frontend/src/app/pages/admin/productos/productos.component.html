@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2>Mantenedor de Productos</h2>
+
+  <form (ngSubmit)="guardarProducto()" #formProducto="ngForm">
+    <input type="text" placeholder="Nombre" [(ngModel)]="producto.nombre" name="nombre" required class="form-control mb-2">
+    <input type="text" placeholder="Descripción" [(ngModel)]="producto.descripcion" name="descripcion" required class="form-control mb-2">
+    <input type="number" placeholder="Precio" [(ngModel)]="producto.precio" name="precio" required class="form-control mb-2">
+    <input type="number" placeholder="Stock" [(ngModel)]="producto.stock" name="stock" required class="form-control mb-2">
+    <input type="text" placeholder="Categoría" [(ngModel)]="producto.categoria" name="categoria" required class="form-control mb-2">
+    <input type="text" placeholder="URL Imagen" [(ngModel)]="producto.imagen" name="imagen" class="form-control mb-2">
+    <button type="submit" class="btn btn-success mt-2">
+      {{ producto.id ? 'Actualizar' : 'Agregar' }}
+    </button>
+    <button *ngIf="producto.id" (click)="cancelarEdicion()" class="btn btn-secondary mt-2 ms-2" type="button">Cancelar</button>
+  </form>
+
+  <hr>
+
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Nombre</th><th>Precio</th><th>Stock</th><th>Categoría</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of productos">
+        <td>{{ p.nombre }}</td>
+        <td>${{ p.precio }}</td>
+        <td>{{ p.stock }}</td>
+        <td>{{ p.categoria }}</td>
+        <td>
+          <button (click)="editarProducto(p)" class="btn btn-warning btn-sm">Editar</button>
+          <button (click)="eliminarProducto(p.id!)" class="btn btn-danger btn-sm ms-2">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
