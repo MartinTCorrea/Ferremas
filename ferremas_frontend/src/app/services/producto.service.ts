@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductoService {
-  private apiUrl = 'http://localhost:3000/api/productos'; // backend Laravel
+  private apiUrl = 'http://localhost:3000/api/productos';
 
   constructor(private http: HttpClient) {}
 

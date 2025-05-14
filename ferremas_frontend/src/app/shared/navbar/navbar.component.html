@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Ferremas</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home">Inicio</a>
+        </li>
+
+        <ng-container *ngIf="auth.usuario">
+          <li class="nav-item" *ngIf="auth.usuario.rol === 'cliente'">
+            <a class="nav-link" routerLink="/cliente">Mi Cuenta</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.usuario.rol === 'vendedor'">
+            <a class="nav-link" routerLink="/vendedor">Vendedor</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.usuario.rol === 'bodeguero'">
+            <a class="nav-link" routerLink="/bodega">Bodega</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.usuario.rol === 'contador'">
+            <a class="nav-link" routerLink="/contabilidad">Contabilidad</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.usuario.rol === 'administrador'">
+            <a class="nav-link" routerLink="/admin">Admin</a>
+          </li>
+        </ng-container>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <ng-container *ngIf="auth.usuario; else noLogin">
+          <li class="nav-item">
+            <button class="btn btn-outline-light" (click)="auth.cerrarSesion()">Cerrar sesión</button>
+          </li>
+        </ng-container>
+        <span *ngIf="usuario">Hola</span>
+        <ng-template #noLogin>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">Registrarse</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>

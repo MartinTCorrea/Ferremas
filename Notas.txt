@@ -3,15 +3,19 @@ para iniciar entorno virtual en \Ferremas
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 .\ferremas_env\Scripts\activate
 cd ferremas_frontend
+cd backend
 
 para desactivar 
-
 deactivate
 
-para build 
+iniciar backend
+node index.js
 
+para build 
 ng build
 
 para iniciar
-
 ng serve
+
+db users
+http://localhost:3000/api/auth/all

@@ -1,47 +1,49 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private BASE_URL = 'http://127.0.0.1:8000/auth';  // Ajusta si cambia
+  private apiUrl = 'http://localhost:3000/api'; // Asegúrate de que esta sea tu URL base del backend
 
   constructor(private http: HttpClient) {}
 
-  login(credentials: { username: string; password: string }) {
-    return this.http.post<{ auth_token: string }>(`${this.BASE_URL}/token/login/`, credentials)
-      .pipe(
-        tap(res => {
-          localStorage.setItem('token', res.auth_token);
-        })
-      );
+  // Login
+  login(data: { username: string; password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/login`, data);
   }
 
-  logout() {
-    return this.http.post(`${this.BASE_URL}/token/logout/`, {}, {
-      headers: { Authorization: `Token ${this.getToken()}` }
-    }).pipe(
-      tap(() => localStorage.removeItem('token'))
-    );
+  // Registro
+  register(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/register`, data);
   }
 
-  register(data: { username: string; password: string; re_password: string }) {
-    return this.http.post(`${this.BASE_URL}/users/`, data);
+  // Guardar token y usuario
+  guardarSesion(token: string, user: any): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser() {
-    return this.http.get(`${this.BASE_URL}/users/me/`, {
-      headers: { Authorization: `Token ${this.getToken()}` }
-    });
+  // Obtener usuario autenticado
+  getUser(): any {
+    return JSON.parse(localStorage.getItem('user') || '{}');
   }
 
-  getToken() {
+  // Obtener token
+  getToken(): string | null {
     return localStorage.getItem('token');
   }
 
+  // Cierre de sesión
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
+
+  // Verifica si el usuario está autenticado
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    return !!localStorage.getItem('token');
   }
 }
