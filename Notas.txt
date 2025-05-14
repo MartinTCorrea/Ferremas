@@ -19,3 +19,10 @@ ng serve
 
 db users
 http://localhost:3000/api/auth/all
+
+github
+git init
+git add .
+git commit -m "comentario"
+git remote add origin https://github.com/MartinTCorrea/Ferremas.git
+git push -u origin
