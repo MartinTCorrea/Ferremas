@@ -1,49 +1,54 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api'; // Asegúrate de que esta sea tu URL base del backend
+  private apiUrl = 'http://localhost:3000/api/auth'; // URL base ajustada
 
-  constructor(private http: HttpClient) {}
 
-  // Login
+  constructor(private http: HttpClient, private router: Router) {}
+  
+  usuario: any = null;
+  // --- Autenticación y Registro ---
   login(data: { username: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/login`, data);
+    return this.http.post(`${this.apiUrl}/login`, data);
   }
 
-  // Registro
   register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/register`, data);
+    return this.http.post(`${this.apiUrl}/register`, data);
   }
 
-  // Guardar token y usuario
+  // --- Manejo de Sesión ---
   guardarSesion(token: string, user: any): void {
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('usuario', JSON.stringify(user));
   }
 
-  // Obtener usuario autenticado
-  getUser(): any {
-    return JSON.parse(localStorage.getItem('user') || '{}');
+  cerrarSesion(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
-  // Obtener token
-  getToken(): string | null {
+  // --- Utilidades ---
+  obtenerToken(): string | null {
     return localStorage.getItem('token');
   }
 
-  // Cierre de sesión
-  logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+  getUser(): any {
+    const userStr = localStorage.getItem('usuario');
+    return userStr ? JSON.parse(userStr) : null;
   }
 
-  // Verifica si el usuario está autenticado
-  isAuthenticated(): boolean {
+  get usuarioActual(): any {
+    const userStr = localStorage.getItem('usuario');
+    return userStr ? JSON.parse(userStr) : null;
+  }
+
+  estaAutenticado(): boolean {
     return !!localStorage.getItem('token');
   }
 }

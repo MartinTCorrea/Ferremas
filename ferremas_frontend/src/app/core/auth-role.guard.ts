@@ -1,26 +1,25 @@
-import { inject, Injectable } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
 
-export function authRoleGuard(allowedRoles: string[]): CanActivateFn {
-  return () => {
-    const token = localStorage.getItem('token');
-    const userStr = localStorage.getItem('user');
+export const authRoleGuard: CanActivateFn = (route, state) => {
+  const allowedRoles = route.data['allowedRoles'] as string[];
+  const token = localStorage.getItem('token');
+  const userStr = localStorage.getItem('user');
+  const router = inject(Router);
 
-    if (!token || !userStr) {
-      const router = inject(Router);
-      router.navigate(['/login']);
-      return false;
-    }
+  if (!token || !userStr) {
+    // Retorna un UrlTree para redirigir, NO navegues manualmente
+    return router.parseUrl('/login');
+  }
 
-    const user = JSON.parse(userStr);
-    const userRole = user.rol;
+  const user = JSON.parse(userStr);
+  const userRole = user.rol;
 
-    // El admin puede entrar a cualquier ruta
-    if (userRole === 'administrador') {
-      return true;
-    }
+  // El admin puede entrar a cualquier ruta
+  if (userRole === 'administrador') {
+    return true;
+  }
 
-    // Revisa si su rol está permitido
-    return allowedRoles.includes(userRole);
-  };
-}
+  // Revisa si su rol está permitido
+  return allowedRoles.includes(userRole);
+};

@@ -38,13 +38,14 @@
         </ng-container>
       </ul>
 
+      
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <ng-container *ngIf="auth.usuario; else noLogin">
           <li class="nav-item">
             <button class="btn btn-outline-light" (click)="auth.cerrarSesion()">Cerrar sesión</button>
           </li>
         </ng-container>
-        <span *ngIf="usuario">Hola</span>
+        
         <ng-template #noLogin>
           <li class="nav-item">
             <a class="nav-link" routerLink="/login">Iniciar sesión</a>

@@ -18,6 +18,12 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorMsg = '';
 
+
+  ngOnInit() {
+    if (this.auth.estaAutenticado()) {
+      this.router.navigate(['/home']);
+    }
+  }
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
