@@ -26,3 +26,17 @@ git add .
 git commit -m "comentario"
 git remote add origin https://github.com/MartinTCorrea/Ferremas.git
 git push -u origin
+
+USUARIOS:
+
+ADMIN
+admin123
+
+sales01
+sales123
+
+bodega01
+bodega123
+
+contador01
+contable123

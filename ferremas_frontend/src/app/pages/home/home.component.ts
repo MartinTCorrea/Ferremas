@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  imports: [RouterModule, NavbarComponent],
-  
+  imports: [CommonModule, RouterModule],
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}

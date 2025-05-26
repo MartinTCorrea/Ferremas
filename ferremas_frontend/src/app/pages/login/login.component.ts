@@ -44,7 +44,7 @@ export class LoginComponent {
           const rol = res.user.rol;
           switch (rol) {
             case 'cliente':
-              this.router.navigate(['/cliente']);
+              this.router.navigate(['/tienda']);
               break;
             case 'administrador':
               this.router.navigate(['/admin']);
@@ -59,7 +59,7 @@ export class LoginComponent {
               this.router.navigate(['/contabilidad']);
               break;
             default:
-              this.router.navigate(['/']);
+              this.router.navigate(['/tienda']);
               break;
           }
         },

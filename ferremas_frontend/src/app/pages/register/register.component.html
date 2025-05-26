@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="center-box">
   <h2>Registrarse</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
@@ -24,7 +24,7 @@
 
     <div class="text-danger mb-3" *ngIf="errorMsg">{{ errorMsg }}</div>
 
-    <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Registrarse</button>
-    <a routerLink="/login" class="btn btn-primary m-2">Iniciar sesión</a>
+    <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">Registrarse</button>
+    <a routerLink="/login" class="btn btn-primary w-100 mt-2">Iniciar sesión</a>
   </form>
 </div>

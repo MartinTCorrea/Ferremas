@@ -38,8 +38,20 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/admin/productos/productos.component').then(m => m.ProductosComponent)
   },
   {
+    path: 'admin/usuarios',
+    loadComponent: () => import('./pages/admin/usuarios/usuarios.component').then(m => m.UsuariosComponent)
+  },
+  {
     path: 'denegado',
     loadComponent: () => import('./pages/denegado/denegado.component').then(m => m.DenegadoComponent)
+  },
+  {
+    path: 'producto/:id',
+    loadComponent: () => import('./pages/producto-detalle/producto-detalle.component').then(m => m.ProductoDetalleComponent)
+  },
+  {
+    path: 'compra',
+    loadComponent: () => import('./pages/compra/compra.component').then(m => m.CompraComponent)
   },
   { path: '**', redirectTo: 'login' }
 ];

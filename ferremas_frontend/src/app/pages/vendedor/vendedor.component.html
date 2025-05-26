@@ -1,1 +1,68 @@
-<p>vendedor works!</p>
+<app-navbar></app-navbar>
+  <div class="container mt-5">
+    <h2>Ventas por Confirmar</h2>
+    <div *ngIf="mensaje" class="alert alert-info">{{mensaje}}</div>
+    <div *ngIf="cargando" class="text-center my-5">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+    <div *ngIf="!cargando && ventas.length === 0">
+      <p class="text-muted">No hay ventas pendientes de confirmación.</p>
+    </div>
+    <div *ngIf="!cargando && ventas.length > 0">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Fecha</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let venta of ventas; let i = index">
+            <tr>
+              <td>{{venta.id}}</td>
+              <td>{{venta.usuario_nombre}}</td>
+              <td>${{venta.total | number:'1.2-2'}}</td>
+              <td>{{venta.fecha | date:'short'}}</td>
+              <td>
+                <button class="btn btn-outline-secondary btn-sm me-2" (click)="venta.expandido = !venta.expandido">
+                  <span *ngIf="!venta.expandido">Ver productos</span>
+                  <span *ngIf="venta.expandido">Ocultar productos</span>
+                </button>
+                <button class="btn btn-success btn-sm" (click)="confirmarVenta(venta)">Confirmar</button>
+              </td>
+            </tr>
+            <tr *ngIf="venta.expandido">
+              <td colspan="5" style="padding:0; border-top:0;">
+                <div *ngIf="venta.items && venta.items.length > 0" class="p-2">
+                  <strong>Productos:</strong>
+                  <table class="table table-sm mb-0">
+                    <thead>
+                      <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of venta.items">
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.cantidad}}</td>
+                        <td>${{item.precio | number:'1.2-2'}}</td>
+                        <td>${{item.precio * item.cantidad | number:'1.2-2'}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>

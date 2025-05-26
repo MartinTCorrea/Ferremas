@@ -30,4 +30,12 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+router.get('/:id', (req, res) => {
+  productoModel.getById(req.params.id, (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!row) return res.status(404).json({ error: 'Producto no encontrado' });
+    res.json(row);
+  });
+});
+
 module.exports = router;

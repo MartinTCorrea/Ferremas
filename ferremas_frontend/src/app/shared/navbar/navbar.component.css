@@ -1,0 +1,44 @@
+.navbar {
+    font-family: 'Montserrat', Arial, sans-serif;
+  }
+
+  .nav-acceso {
+    background: #FF9800;
+    color: #FFFFFF !important;
+    font-weight: bold;
+    border: 1px solid #FF9800;
+    border-radius: 20px;
+    padding: 0.2rem 1rem;
+    margin-left: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .navbar .nav-acceso:hover {
+    background: #FFFFFF;
+    color: #FF9800 !important;
+    border: 1px solid #FF9800;
+  }
+.navbar {
+    background-color: #43A047 !important;
+  }
+  
+  .navbar .nav-link,
+  .navbar .navbar-brand {
+    color: #FFFFFF !important;
+  }
+
+.carrito-link {
+  cursor: pointer;
+  color: #fff !important;
+  background: none !important;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+}
+
+.carrito-link:hover, .carrito-link:focus {
+  text-decoration: underline;
+  color: #ffd600 !important;
+  background: none !important;
+}

@@ -5,3 +5,53 @@
 .nav-button{
     margin-right: 10px;
 }
+.carousel-custom-btn-prev {
+    left: -90px;
+}
+.carousel-custom-btn-next {
+    right: -90px;
+}
+.carousel-custom-btn {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+:host {
+  background: #43A047;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+.center-box {
+  max-width: 400px;
+  margin: 60px auto;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(67, 160, 71, 0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  border: 1px solid #43A047;
+}
+.btn-success {
+  background: #43A047;
+  border: none;
+  font-weight: bold;
+  color: #fff;
+  transition: background 0.2s;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.btn-success:hover {
+  background: #388E3C;
+}
+.btn-primary {
+  background: #FF9800;
+  border: none;
+  font-weight: bold;
+  color: #fff;
+  transition: background 0.2s;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.btn-primary:hover {
+  background: #FFA726;
+  color: #fff;
+}

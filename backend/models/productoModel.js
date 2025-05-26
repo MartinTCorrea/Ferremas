@@ -24,5 +24,8 @@ module.exports = {
   },
   delete: (id, cb) => {
     db.run("DELETE FROM productos WHERE id = ?", [id], cb);
+  },
+  getById: (id, cb) => {
+    db.get("SELECT * FROM productos WHERE id = ?", [id], cb);
   }
 };

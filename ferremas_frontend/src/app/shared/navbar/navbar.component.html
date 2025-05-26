@@ -19,28 +19,48 @@
           <a class="nav-link" routerLink="/home">Inicio</a>
         </li>
 
-        <ng-container *ngIf="auth.usuario">
-          <li class="nav-item" *ngIf="auth.usuario.rol === 'cliente'">
-            <a class="nav-link" routerLink="/cliente">Mi Cuenta</a>
-          </li>
-          <li class="nav-item" *ngIf="auth.usuario.rol === 'vendedor'">
-            <a class="nav-link" routerLink="/vendedor">Vendedor</a>
-          </li>
-          <li class="nav-item" *ngIf="auth.usuario.rol === 'bodeguero'">
-            <a class="nav-link" routerLink="/bodega">Bodega</a>
-          </li>
-          <li class="nav-item" *ngIf="auth.usuario.rol === 'contador'">
-            <a class="nav-link" routerLink="/contabilidad">Contabilidad</a>
-          </li>
-          <li class="nav-item" *ngIf="auth.usuario.rol === 'administrador'">
-            <a class="nav-link" routerLink="/admin">Admin</a>
-          </li>
+        <ng-container *ngIf="usuario">
+          <ng-container *ngIf="rolEnRuta; else enlacesRoles">
+            <li class="nav-item">
+              <span class="nav-link disabled" style="cursor: default; opacity: 1;">{{ rolEnRuta }}</span>
+            </li>
+          </ng-container>
+          <ng-template #enlacesRoles>
+            <li class="nav-item" *ngIf="usuario.rol === 'cliente'">
+              <a class="nav-link" routerLink="/cliente">Mi Cuenta</a>
+            </li>
+            <li class="nav-item" *ngIf="usuario.rol === 'vendedor'">
+              <a class="nav-link" routerLink="/vendedor">Vendedor</a>
+            </li>
+            <li class="nav-item" *ngIf="usuario.rol === 'bodeguero'">
+              <a class="nav-link" routerLink="/bodega">Bodega</a>
+            </li>
+            <li class="nav-item" *ngIf="usuario.rol === 'contador'">
+              <a class="nav-link" routerLink="/contabilidad">Contabilidad</a>
+            </li>
+            <li class="nav-item" *ngIf="usuario.rol === 'administrador'">
+              <a class="nav-link" routerLink="/admin">Admin</a>
+            </li>
+          </ng-template>
         </ng-container>
       </ul>
 
       
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <ng-container *ngIf="auth.usuario; else noLogin">
+        <li class="nav-item" *ngIf="mostrarCarrito && usuario">
+          <a
+            class="nav-link me-2 carrito-link"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+          >
+            <i class="bi bi-cart"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+            </svg>
+          </a>
+        </li>
+        <ng-container *ngIf="usuario; else noLogin">
           <li class="nav-item">
             <button class="btn btn-outline-light" (click)="auth.cerrarSesion()">Cerrar sesión</button>
           </li>
@@ -48,13 +68,54 @@
         
         <ng-template #noLogin>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+            <a class="nav-link nav-acceso" routerLink="/login">Iniciar sesión</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Registrarse</a>
+            <a class="nav-link nav-acceso" routerLink="/register">Registrarse</a>
           </li>
         </ng-template>
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- Offcanvas Carrito -->
+<div *ngIf="usuario" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ng-container *ngIf="cargandoCarrito">
+      <div class="text-center my-4">
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!cargandoCarrito && items.length === 0">
+      <p class="text-center text-muted">Tu carrito está vacío.</p>
+    </ng-container>
+    <ng-container *ngIf="!cargandoCarrito && items.length > 0">
+      <div *ngFor="let item of items" class="d-flex align-items-center border-bottom py-2">
+        <img [src]="item.imagen" alt="{{item.nombre}}" width="48" height="48" class="rounded me-2" style="object-fit:cover;">
+        <div class="flex-grow-1">
+          <div class="fw-bold">{{item.nombre}}</div>
+          <div class="text-muted small">${{item.precio | number:'1.2-2'}}</div>
+        </div>
+        <div class="d-flex align-items-center mx-2">
+          <button class="btn btn-outline-secondary btn-sm" (click)="cambiarCantidad(item, -1)" [disabled]="item.cantidad <= 1">-</button>
+          <span class="mx-2">{{item.cantidad}}</span>
+          <button class="btn btn-outline-secondary btn-sm" (click)="cambiarCantidad(item, 1)" [disabled]="item.cantidad >= 10">+</button>
+        </div>
+        <button class="btn btn-outline-danger btn-sm ms-2" (click)="eliminarItem(item)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+        </svg></button>
+      </div>
+      <div class="mt-4 text-end">
+        <h5>Total: ${{total | number:'1.2-2'}}</h5>
+        <button class="btn btn-primary mt-2 w-100" *ngIf="items.length > 0" (click)="irAComprar()">Comprar</button>
+      </div>
+    </ng-container>
+  </div>
+</div>
