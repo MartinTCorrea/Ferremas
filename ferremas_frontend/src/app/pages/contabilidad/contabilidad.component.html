@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <h2>Ventas Pendientes de Pago</h2>
+  <div class="mb-3">
+    <a class="btn btn-outline-primary" href="http://localhost:3000/api/ventas/pdf-mes" target="_blank">
+      Descargar PDF ventas del mes
+    </a>
+  </div>
+  <div *ngIf="mensaje" class="alert alert-info">{{mensaje}}</div>
+  <div *ngIf="cargando" class="text-center my-5">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+  <div *ngIf="!cargando && ventas.length === 0">
+    <p class="text-muted">No hay ventas pendientes de pago.</p>
+  </div>
+  <div *ngIf="!cargando && ventas.length > 0">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Total</th>
+          <th>Fecha</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let venta of ventas">
+          <td>{{venta.id}}</td>
+          <td>{{venta.usuario_nombre}}</td>
+          <td>${{venta.total | number:'1.2-2'}}</td>
+          <td>{{venta.fecha | date:'short'}}</td>
+          <td>
+            <button class="btn btn-success btn-sm" (click)="confirmarPago(venta)">Confirmar Pago</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

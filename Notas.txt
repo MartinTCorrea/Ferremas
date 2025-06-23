@@ -1,0 +1,42 @@
+para iniciar entorno virtual en \Ferremas
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+.\ferremas_env\Scripts\activate
+cd ferremas_frontend
+cd backend
+
+para desactivar 
+deactivate
+
+iniciar backend
+node index.js
+
+para build 
+ng build
+
+para iniciar
+ng serve
+
+db users
+http://localhost:3000/api/auth/all
+
+github
+git init
+git add .
+git commit -m "comentario"
+git remote add origin https://github.com/MartinTCorrea/Ferremas.git
+git push -u origin
+
+USUARIOS:
+
+ADMIN
+admin123
+
+sales01
+sales123
+
+bodega01
+bodega123
+
+contador01
+contable123

@@ -1,0 +1,32 @@
+/***** Filtros *****/
+.card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-radius: 12px;
+}
+
+/***** Productos *****/
+.card-img-top {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.card-text {
+  font-size: 0.95rem;
+}
+.btn-success {
+  font-size: 0.95rem;
+  padding: 0.3rem 0.8rem;
+}
+
+/***** Paginación *****/
+.pagination .page-link {
+  color: #43A047;
+}
+.pagination .page-item.active .page-link, .pagination .page-link:focus {
+  background: #43A047;
+  color: #fff;
+  border-color: #43A047;
+}

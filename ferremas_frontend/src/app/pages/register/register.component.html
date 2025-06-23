@@ -1,0 +1,30 @@
+<div class="center-box">
+  <h2>Registrarse</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label>Nombre completo</label>
+      <input type="text" formControlName="nombreCompleto" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label>Usuario</label>
+      <input type="text" formControlName="username" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" formControlName="email" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label>Contraseña</label>
+      <input type="password" formControlName="password" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label>Confirmar contraseña</label>
+      <input type="password" formControlName="re_password" class="form-control">
+    </div>
+
+    <div class="text-danger mb-3" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+    <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">Registrarse</button>
+    <a routerLink="/login" class="btn btn-primary w-100 mt-2">Iniciar sesión</a>
+  </form>
+</div>
