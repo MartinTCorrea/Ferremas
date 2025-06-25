@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authRoleGuard } from './core/auth-role.guard';
+//import { authRoleGuard } from './core/auth-role.guard';
 
 export const routes: Routes = [
   {
@@ -21,38 +21,38 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadComponent: () => import('./pages/admin/admin.component').then(m => m.AdminComponent),
-    canActivate: [authRoleGuard],
-    data: { allowedRoles: ['administrador'] }
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Administrador'] }
   },
   {
     path: 'vendedor',
     loadComponent: () => import('./pages/vendedor/vendedor.component').then(m => m.VendedorComponent),
-    canActivate: [authRoleGuard],
-    data: { allowedRoles: ['vendedor'] }
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Vendedor'] }
   },
   {
     path: 'bodega',
     loadComponent: () => import('./pages/bodega/bodega.component').then(m => m.BodegaComponent),
-    canActivate: [authRoleGuard],
-    data: { allowedRoles: ['bodeguero'] }
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Bodeguero'] }
   },
   {
     path: 'contabilidad',
     loadComponent: () => import('./pages/contabilidad/contabilidad.component').then(m => m.ContabilidadComponent),
-    canActivate: [authRoleGuard],
-    data: { allowedRoles: ['contador'] }
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Contador'] }
   },
   {
     path: 'admin/productos',
     loadComponent: () => import('./pages/admin/productos/productos.component').then(m => m.ProductosComponent),
-    canActivate: [authRoleGuard],
-    data: { allowedRoles: ['administrador'] }
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Administrador'] }
   },
   {
     path: 'admin/usuarios',
     loadComponent: () => import('./pages/admin/usuarios/usuarios.component').then(m => m.UsuariosComponent),
-    canActivate: [authRoleGuard],
-    data: { allowedRoles: ['administrador'] }
+    //  canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Administrador'] }
   },
   {
     path: 'denegado',

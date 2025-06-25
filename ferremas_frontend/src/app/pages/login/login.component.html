@@ -3,19 +3,19 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label>Usuario</label>
-      <input type="text" formControlName="username" class="form-control">
+      <input type="text" formControlName="username" class="form-control" data-cy="username-input">
       <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-danger">
         Usuario requerido
       </div>
     </div>
     <div class="mb-3">
       <label>Contraseña</label>
-      <input type="password" formControlName="password" class="form-control">
+      <input type="password" formControlName="password" class="form-control" data-cy="password-input">
       <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
         Contraseña requerida
       </div>
     </div>
-    <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Ingresar</button>
+    <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid" data-cy="login-button">Ingresar</button>
     <a routerLink="/register" class="btn btn-success w-100 mt-2">Registrarse</a>
   </form>
 </div>

@@ -16,7 +16,7 @@ export const authRoleGuard: CanActivateFn = (route, state) => {
   const userRole = user.rol;
 
   // El admin puede entrar a cualquier ruta
-  if (userRole === 'administrador') {
+  if (userRole === 'Administrador') {
     return true;
   }
 

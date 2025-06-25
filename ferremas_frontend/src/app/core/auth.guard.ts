@@ -16,7 +16,7 @@ export function authRoleGuard(allowedRoles: string[]): CanActivateFn {
     const userRole = user.rol;
 
     // Admin tiene acceso total
-    if (userRole === 'administrador') return true;
+    if (userRole === 'Administrador') return true;
 
     // Verifica si tiene permiso
     if (allowedRoles.includes(userRole)) {
