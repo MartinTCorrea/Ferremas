@@ -8,7 +8,14 @@
           <h3 class="card-title">{{producto.nombre}}</h3>
           <p class="text-muted mb-1">Categoría: {{producto.categoria}}</p>
           <p class="mb-2">{{producto.descripcion}}</p>
+<<<<<<< HEAD
           <h4 class="fw-bold mb-3">${{producto.precio | number:'1.2-2'}}</h4>
+=======
+          <p>
+            Precio: ${{ producto.precio }} CLP
+            <span *ngIf="precioUSD"> (USD {{ precioUSD | number:'1.2-2' }})</span>
+          </p>
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
           <div class="d-flex align-items-center mb-3">
             <label class="me-2">Cantidad:</label>
             <button class="btn btn-outline-secondary btn-sm" (click)="decrementar()" [disabled]="cantidad <= 1">-</button>

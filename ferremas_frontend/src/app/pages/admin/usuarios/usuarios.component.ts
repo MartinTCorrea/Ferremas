@@ -20,7 +20,11 @@ export class UsuariosComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private usuariosService: UsuariosService) {
     this.usuarioForm = this.fb.group({
+<<<<<<< HEAD
       nombre: ['', Validators.required],
+=======
+      nombreCompleto: ['', Validators.required],
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: [''],

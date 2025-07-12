@@ -22,7 +22,11 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
+<<<<<<< HEAD
           "options": {
+=======
+          "options": {  
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
             "outputPath": "dist/ferremas_frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",

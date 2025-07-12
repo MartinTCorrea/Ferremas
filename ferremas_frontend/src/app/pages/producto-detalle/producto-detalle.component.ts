@@ -7,6 +7,10 @@ import { CarritoService } from '../../services/carrito.service';
 import { AuthService } from '../../core/auth.service';
 import { Producto } from '../../models/producto.model';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
+<<<<<<< HEAD
+=======
+import { HttpClient } from '@angular/common/http';
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
 
 @Component({
   selector: 'app-producto-detalle',
@@ -21,12 +25,22 @@ export class ProductoDetalleComponent implements OnInit {
   cargando: boolean = true;
   usuario: any = null;
   carrito: any = null;
+<<<<<<< HEAD
+=======
+  valorDolar: number = 0;
+  precioUSD: number = 0;
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
 
   constructor(
     private route: ActivatedRoute,
     private productoService: ProductoService,
     private carritoService: CarritoService,
+<<<<<<< HEAD
     private auth: AuthService
+=======
+    private auth: AuthService,
+    private http: HttpClient
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
   ) {}
 
   ngOnInit() {
@@ -35,6 +49,10 @@ export class ProductoDetalleComponent implements OnInit {
       next: (prod) => {
         this.producto = prod;
         this.cargando = false;
+<<<<<<< HEAD
+=======
+        this.obtenerValorDolar();
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
       },
       error: () => {
         this.cargando = false;
@@ -48,6 +66,23 @@ export class ProductoDetalleComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
+=======
+  obtenerValorDolar() {
+    this.http.get<any>('http://localhost:3000/api/indicadores/dolar')
+      .subscribe(data => {
+        this.valorDolar = data.valor;
+        this.calcularPrecioUSD();
+      });
+  }
+
+  calcularPrecioUSD() {
+    if (this.producto && this.valorDolar) {
+      this.precioUSD = this.producto.precio / this.valorDolar;
+    }
+  }
+
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
   agregarAlCarrito() {
     if (!this.carrito || !this.producto) return;
     this.carritoService.agregarItem(this.carrito.id, this.producto.id!, this.cantidad).subscribe({

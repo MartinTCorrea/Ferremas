@@ -10,7 +10,11 @@ import { RouterModule } from '@angular/router';
     <div class="denegado-container">
       <h1>🚫 Acceso Denegado</h1>
       <p>No tienes permisos para ver esta página.</p>
+<<<<<<< HEAD
       <a routerLink="/home" class="volver-btn">Volver al inicio</a>
+=======
+      <a routerLink="/tienda" class="volver-btn">Volver a la tienda</a>
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
     </div>
   `,
   styles: [`

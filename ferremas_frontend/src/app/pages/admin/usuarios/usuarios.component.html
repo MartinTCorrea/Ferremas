@@ -3,7 +3,11 @@
   <button class="btn btn-success mb-2" (click)="cancelarEdicion()">Agregar Usuario</button>
   <form [formGroup]="usuarioForm" (ngSubmit)="editando ? guardarEdicion() : agregarUsuario()">
     <!-- Campos del formulario -->
+<<<<<<< HEAD
     <input formControlName="nombre" placeholder="Nombre Completo" class="form-control mb-2">
+=======
+    <input formControlName="nombreCompleto" placeholder="Nombre Completo" class="form-control mb-2">
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
     <input formControlName="username" placeholder="Username" class="form-control mb-2">
     <input formControlName="email" placeholder="Email" class="form-control mb-2">
     <input formControlName="password" placeholder="Contraseña" type="password" class="form-control mb-2">

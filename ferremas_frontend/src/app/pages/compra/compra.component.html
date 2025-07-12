@@ -22,13 +22,22 @@
         <tr *ngFor="let item of items">
           <td>{{item.nombre}}</td>
           <td>{{item.cantidad}}</td>
+<<<<<<< HEAD
           <td>${{item.precio | number:'1.2-2'}}</td>
           <td>${{item.precio * item.cantidad | number:'1.2-2'}}</td>
+=======
+          <td>${{item.precio | number:'1.2-2'}} <span *ngIf="valorDolar">(USD {{(item.precio/valorDolar) | number:'1.2-2'}})</span></td>
+          <td>${{item.precio * item.cantidad | number:'1.2-2'}} <span *ngIf="valorDolar">(USD {{((item.precio * item.cantidad)/valorDolar) | number:'1.2-2'}})</span></td>
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
         </tr>
       </tbody>
     </table>
     <div class="text-end mb-3">
+<<<<<<< HEAD
       <strong>Total: ${{total | number:'1.2-2'}}</strong>
+=======
+      <strong>Total: ${{total | number:'1.2-2'}} <span *ngIf="totalUSD">(USD {{totalUSD | number:'1.2-2'}})</span></strong>
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
     </div>
     <button class="btn btn-success w-100" (click)="pagar()">Pagar</button>
   </div>

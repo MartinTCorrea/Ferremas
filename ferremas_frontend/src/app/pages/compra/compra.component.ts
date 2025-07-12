@@ -19,6 +19,11 @@ export class CompraComponent implements OnInit {
   total: number = 0;
   cargando: boolean = true;
   mensaje: string = '';
+<<<<<<< HEAD
+=======
+  valorDolar: number = 0;
+  totalUSD: number = 0;
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
 
   constructor(
     private carritoService: CarritoService,
@@ -29,12 +34,20 @@ export class CompraComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = this.auth.getUser();
+<<<<<<< HEAD
+=======
+    this.obtenerValorDolar();
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
     if (this.usuario) {
       this.carritoService.obtenerCarrito(this.usuario.id).subscribe({
         next: (res) => {
           this.carrito = res.carrito;
           this.items = res.items || [];
           this.total = this.items.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+<<<<<<< HEAD
+=======
+          this.calcularTotalUSD();
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
           this.cargando = false;
         },
         error: () => {
@@ -46,6 +59,27 @@ export class CompraComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
+=======
+  obtenerValorDolar() {
+    this.http.get<any>('http://localhost:3000/api/indicadores/dolar').subscribe({
+      next: (data) => {
+        this.valorDolar = data.valor;
+        this.calcularTotalUSD();
+      },
+      error: () => {
+        this.valorDolar = 0;
+      }
+    });
+  }
+
+  calcularTotalUSD() {
+    if (this.valorDolar && this.total) {
+      this.totalUSD = this.total / this.valorDolar;
+    }
+  }
+
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
   pagar() {
     if (!this.usuario || !this.items.length) return;
     const productos = this.items.map(item => ({

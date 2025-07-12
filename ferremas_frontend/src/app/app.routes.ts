@@ -1,4 +1,8 @@
 import { Routes } from '@angular/router';
+<<<<<<< HEAD
+=======
+//import { authRoleGuard } from './core/auth-role.guard';
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
 
 export const routes: Routes = [
   {
@@ -19,6 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
+<<<<<<< HEAD
     loadComponent: () => import('./pages/admin/admin.component').then(m => m.AdminComponent)
   },
   {
@@ -40,6 +45,41 @@ export const routes: Routes = [
   {
     path: 'admin/usuarios',
     loadComponent: () => import('./pages/admin/usuarios/usuarios.component').then(m => m.UsuariosComponent)
+=======
+    loadComponent: () => import('./pages/admin/admin.component').then(m => m.AdminComponent),
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Administrador'] }
+  },
+  {
+    path: 'vendedor',
+    loadComponent: () => import('./pages/vendedor/vendedor.component').then(m => m.VendedorComponent),
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Vendedor'] }
+  },
+  {
+    path: 'bodega',
+    loadComponent: () => import('./pages/bodega/bodega.component').then(m => m.BodegaComponent),
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Bodeguero'] }
+  },
+  {
+    path: 'contabilidad',
+    loadComponent: () => import('./pages/contabilidad/contabilidad.component').then(m => m.ContabilidadComponent),
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Contador'] }
+  },
+  {
+    path: 'admin/productos',
+    loadComponent: () => import('./pages/admin/productos/productos.component').then(m => m.ProductosComponent),
+    //canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Administrador'] }
+  },
+  {
+    path: 'admin/usuarios',
+    loadComponent: () => import('./pages/admin/usuarios/usuarios.component').then(m => m.UsuariosComponent),
+    //  canActivate: [authRoleGuard],
+    data: { allowedRoles: ['Administrador'] }
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
   },
   {
     path: 'denegado',

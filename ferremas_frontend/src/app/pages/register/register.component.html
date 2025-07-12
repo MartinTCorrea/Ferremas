@@ -3,6 +3,7 @@
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label>Nombre completo</label>
+<<<<<<< HEAD
       <input type="text" formControlName="nombreCompleto" class="form-control">
     </div>
     <div class="mb-3">
@@ -25,6 +26,30 @@
     <div class="text-danger mb-3" *ngIf="errorMsg">{{ errorMsg }}</div>
 
     <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">Registrarse</button>
+=======
+      <input type="text" formControlName="nombreCompleto" class="form-control" data-cy="nombre-input">
+    </div>
+    <div class="mb-3">
+      <label>Usuario</label>
+      <input type="text" formControlName="username" class="form-control" data-cy="username-input">
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" formControlName="email" class="form-control" data-cy="email-input">
+    </div>
+    <div class="mb-3">
+      <label>Contraseña</label>
+      <input type="password" formControlName="password" class="form-control" data-cy="password-input">
+    </div>
+    <div class="mb-3">
+      <label>Confirmar contraseña</label>
+      <input type="password" formControlName="re_password" class="form-control" data-cy="re_password-input">
+    </div>
+
+    <div class="text-danger mb-3" *ngIf="errorMsg" data-cy="error-message">{{ errorMsg }}</div>
+
+    <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid" data-cy="register-button">Registrarse</button>
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
     <a routerLink="/login" class="btn btn-primary w-100 mt-2">Iniciar sesión</a>
   </form>
 </div>

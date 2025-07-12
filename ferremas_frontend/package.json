@@ -18,7 +18,10 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.10",
     "@auth0/angular-jwt": "^5.2.0",
+<<<<<<< HEAD
     "bcrypt": "^6.0.0",
+=======
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
     "bootstrap": "^5.3.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -26,7 +29,12 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.11",
+<<<<<<< HEAD
     "@angular/cli": "^19.2.11",
+=======
+    "@angular-devkit/core": "^20.0.3",
+    "@angular/cli": "^19.2.15",
+>>>>>>> 373278fd6545070e041e08fd8e3c31dff81e7694
     "@angular/compiler-cli": "^19.2.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.6.0",
