@@ -1,0 +1,38 @@
+<div class="container py-4">
+  <h2>Resumen de compra</h2>
+  <div *ngIf="cargando" class="text-center my-5">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+  <div *ngIf="!cargando && items.length === 0">
+    <p class="text-muted">No hay productos en el carrito.</p>
+  </div>
+  <div *ngIf="!cargando && items.length > 0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{item.nombre}}</td>
+          <td>{{item.cantidad}}</td>
+          <td>${{item.precio | number:'1.2-2'}}</td>
+          <td>${{item.precio * item.cantidad | number:'1.2-2'}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-end mb-3">
+      <strong>Total: ${{total | number:'1.2-2'}}</strong>
+    </div>
+    <button class="btn btn-success w-100" (click)="pagar()">Pagar</button>
+  </div>
+  <div *ngIf="mensaje" class="alert mt-4" [ngClass]="{'alert-success': mensaje.includes('éxito'), 'alert-danger': mensaje.includes('Error')}">
+    {{mensaje}}
+  </div>
+</div>

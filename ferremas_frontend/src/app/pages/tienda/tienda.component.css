@@ -1,0 +1,9 @@
+.carousel-custom-btn-prev {
+    left: -90px;
+}
+.carousel-custom-btn-next {
+    right: -90px;
+}
+.carousel-custom-btn {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}

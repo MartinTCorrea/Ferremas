@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <h3>Usuarios</h3>
+  <button class="btn btn-success mb-2" (click)="cancelarEdicion()">Agregar Usuario</button>
+  <form [formGroup]="usuarioForm" (ngSubmit)="editando ? guardarEdicion() : agregarUsuario()">
+    <!-- Campos del formulario -->
+    <input formControlName="nombre" placeholder="Nombre Completo" class="form-control mb-2">
+    <input formControlName="username" placeholder="Username" class="form-control mb-2">
+    <input formControlName="email" placeholder="Email" class="form-control mb-2">
+    <input formControlName="password" placeholder="Contraseña" type="password" class="form-control mb-2">
+    <input formControlName="rol" placeholder="Rol" class="form-control mb-2">
+    <button class="btn btn-primary" type="submit">{{ editando ? 'Guardar Cambios' : 'Agregar' }}</button>
+    <button *ngIf="editando" class="btn btn-secondary ms-2" type="button" (click)="cancelarEdicion()">Cancelar</button>
+  </form>
+
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.nombreCompleto }}</td>
+        <td>{{ usuario.username }}</td>
+        <td>{{ usuario.email }}</td>
+        <td>{{ usuario.rol }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editarUsuario(usuario)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
